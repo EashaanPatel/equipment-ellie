@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Equipment Library</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <div>
+        <h1>Equipment Library</h1>
+        <p class="subtitle">Fast checkout, return, and handoffs</p>
+      </div>
+      <div class="toolbar">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Search equipment or person"
+        />
+        <div class="filters">
+          <button class="filter-button active" data-filter="all">All</button>
+          <button class="filter-button" data-filter="available">Available</button>
+          <button class="filter-button" data-filter="checked_out">Checked out</button>
+          <button class="filter-button" data-filter="overdue">Overdue</button>
+        </div>
+        <div class="actions">
+          <button id="addEquipmentBtn" class="primary">+ Add equipment</button>
+          <button id="managePeopleBtn" class="secondary">Manage people</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="equipment-list">
+        <div class="list-header">
+          <h2>Equipment</h2>
+          <span id="equipmentCount" class="badge">0</span>
+        </div>
+        <div id="equipmentList" class="list"></div>
+      </section>
+
+      <section class="details-panel" id="detailsPanel">
+        <div class="details-empty">
+          <h2>Pick equipment to see details</h2>
+          <p>Select an item from the list to check out, check in, or transfer.</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="equipmentDialog" class="dialog">
+      <form id="equipmentForm" method="dialog">
+        <h3 id="equipmentDialogTitle">Add equipment</h3>
+        <label>
+          Name
+          <input name="name" type="text" required />
+        </label>
+        <label>
+          Tag / ID
+          <input name="tag" type="text" />
+        </label>
+        <label>
+          Description
+          <textarea name="description" rows="3"></textarea>
+        </label>
+        <menu>
+          <button type="button" class="ghost" data-close="equipmentDialog">Cancel</button>
+          <button type="submit" class="primary">Save</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <dialog id="peopleDialog" class="dialog">
+      <form id="peopleForm" method="dialog">
+        <h3 id="peopleDialogTitle">Add person</h3>
+        <label>
+          Name
+          <input name="name" type="text" required />
+        </label>
+        <label>
+          Email
+          <input name="email" type="email" />
+        </label>
+        <label>
+          Role
+          <input name="role" type="text" />
+        </label>
+        <menu>
+          <button type="button" class="ghost" data-close="peopleDialog">Cancel</button>
+          <button type="submit" class="primary">Save</button>
+        </menu>
+      </form>
+      <div class="people-list">
+        <h4>Current people</h4>
+        <div id="peopleList"></div>
+      </div>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
